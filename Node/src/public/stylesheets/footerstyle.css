@@ -1,0 +1,38 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background: #fcfcfc;
+}
+footer{
+    
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(96, 133, 172, 0.88);
+    height: 60px;
+    width: 100%;
+    position: fixed;
+    font-family: "Open Sans";
+    
+    color: #fff;
+}
+
+.footer-bottom{
+    
+    width: 100%;
+    padding: 25px 0;
+    text-align: center;
+}
+.footer-bottom p{
+    font-size: 14px;
+    word-spacing: 2px;
+    text-transform: capitalize;
+}
+.footer-bottom span{
+    text-transform: uppercase;
+    opacity: .4;
+    font-weight: 200;
+}

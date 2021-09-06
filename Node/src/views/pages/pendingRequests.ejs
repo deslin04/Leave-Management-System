@@ -1,0 +1,124 @@
+<%- include('../partials/header.ejs') %>
+
+
+  <h2 style="text-align: center; padding: 10px;">Pending Leave Applications</h2>
+  <table class="table table-striped" style="width: 80%;
+margin-left: auto;
+margin-right: auto;">
+    <thead align="center" style="background: #4ed3a438;">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Department</th>
+        <th scope="col">Apply Date</th>
+        <th scope="col">Leavetype</th>
+        <th scope="col">From</th>
+        <th scope="col">To</th>
+        <th scope="col">Days</th>
+        <th scope="col">Reason</th>
+        <th scope="col" colspan="2">Action</th>
+      </tr>
+    </thead>
+
+    <tbody align="center">
+      <tr>
+
+        <% if(data.length){ for(var i=0;i < data.length;i++) { %>
+
+
+
+
+      <tr>
+
+        <td>
+          <%=data[i].employe.id%>
+        </td>
+
+        <td>
+          <%=data[i].employe.name%>
+        </td>
+
+        <td>
+          <%=data[i].employe.department.name%>
+        </td>
+
+        <td>
+          <%=data[i].applyDate%>
+        </td>
+
+        <td>
+          <%=data[i].leaveType%>
+        </td>
+
+        <td>
+          <%=data[i].fromDate%>
+        </td>
+
+
+        <td>
+          <%=data[i].toDate%>
+        </td>
+
+
+        <td>
+          <%=data[i].days%>
+        </td>
+
+
+        <td>
+          <%=data[i].reason%>
+        </td>
+
+        <td> <a class="btn btn-success btn-sm" href="/requests/approverequest/<%=data[i].id%>"
+            role="button">Approve</a></td>
+
+        <!-- <td> <a class="btn btn-danger btn-sm" href="/pendingrequests/rejectrequest/<%=data[i].req_id%>" role="button">Reject</a></td>-->
+        <td>
+          <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Reject
+          </button>
+
+          <!-- Modal -->
+
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <form method="POST" action="/requests/rejectrequest/<%=data[i].id%>">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Comments</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="mb-3">
+
+                      <textarea name="comments" class="form-control" id="message-text" rows="4"></textarea>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-danger">Reject</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+        </td>
+      </tr>
+      <% } } else { %>
+        <tr>
+          <td colspan="10"> No requests </td>
+        </tr>
+        <% } %>
+
+    </tbody>
+  </table>
+
+ 
+
+  <%- include('../partials/footer.ejs') %>

@@ -1,0 +1,129 @@
+<%- include('../partials/header.ejs') %>
+	<h2 style="text-align: center; padding: 10px;">
+		<%=dept.name%> Department Employee Leave Details
+	</h2>
+
+	<div class="dropdown" style="margin-left: 135px; padding-bottom: 8px;">
+		<form action="/requests/leaveDetails/<%=dept.id%>" method="post" style="margin: 8px;">
+
+
+			<label>From:</label>
+			<input type="date" name="From" id="From" placeholder=""></td>
+			<label>To:</label>
+			<input type="date" name="To" id="To" placeholder=""></td>
+			<button type="submit" class="btn btn-primary btn-sm">Submit</button>
+
+
+		</form>
+	</div>
+
+	<table class="table table-striped" style="width: 80%;
+margin-left: auto;
+margin-right: auto; margin-bottom: 68px;">
+		<thead align="center" style="background: #4ed3a438;">
+			<tr>
+				<th scope="col">ID</th>
+				<th scope="col">Name</th>
+				<th scope="col">Department</th>
+				<th scope="col">Apply Date</th>
+				<th scope="col">Leavetype</th>
+				<th scope="col">From</th>
+				<th scope="col">To</th>
+				<th scope="col">Days</th>
+				<th scope="col">Reason</th>
+				<th scope="col">Status</th>
+			</tr>
+		</thead>
+		<tbody align="center">
+			<tr>
+
+				<% if(data.length){ for(var i=0;i < data.length;i++) { %>
+
+
+
+
+			<tr>
+
+				<td>
+					<%=data[i].employe.id%>
+				</td>
+
+				<td>
+					<%=data[i].employe.name%>
+				</td>
+
+				<td>
+					<%=data[i].employe.department.name%>
+				</td>
+
+				<td>
+					<%=data[i].applyDate%>
+				</td>
+
+				<td>
+					<%=data[i].leaveType%>
+				</td>
+
+				<td>
+					<%=data[i].fromDate%>
+				</td>
+
+
+				<td>
+					<%=data[i].toDate%>
+				</td>
+
+
+				<td>
+					<%=data[i].days%>
+				</td>
+
+
+				<td>
+					<%=data[i].reason%>
+				</td>
+
+				<% if(data[i].status=='Pending' ) { %>
+
+					<td><button type="button" id="but" class="btn btn-warning btn-sm">
+							<%= data[i].status%>
+						</button></td>
+
+					<% } else if(data[i].status=='Approved' ){ %>
+
+						<td><button type="button" id="but" class="btn btn-success btn-sm">
+								<%= data[i].status%>
+							</button></td>
+						<% } else{ %>
+							<td><button type="button" id="but" class="btn btn-danger btn-sm">
+									<%= data[i].status%>
+								</button></td>
+
+
+
+							<% } %>
+			</tr>
+
+
+			<% } }else{ %>
+				<tr>
+					<td colspan="10"> No requests </td>
+				</tr>
+				<% } %>
+
+
+		</tbody>
+	</table>
+
+
+
+
+
+
+
+	<script>
+
+		var butcol = document.getElementById("but").value;
+	</script>
+
+	<%- include('../partials/footer.ejs') %>

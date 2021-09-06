@@ -1,0 +1,273 @@
+<%- include('../partials/header.ejs') %>
+  <script src='/javascripts/leaverequests.js'></script>
+
+  <link rel="stylesheet" type="text/css" href='stylesheets/userhome1.css'>
+
+  <div class="container-fluid text-center" style="margin-bottom: 178px;">
+    <div class="row content">
+      <div class="col-sm-2 sidenav">
+
+        <div class="panel">
+          <div class="user-heading round">
+            <a href="#">
+              <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="" class="photo">
+            </a>
+
+            <h3>
+              <p>
+                <%=profile.name%>
+              </p>
+            </h3>
+            <p>
+              <%=profile.designation%>
+            </p>
+          </div>
+
+          <ul class="list-group">
+
+            <li class="list-group-item"><span><i class="bi bi-person-circle"></i></span> AST-<%=profile.id%>
+            </li>
+            <li class="list-group-item"><span> <i class="bi bi-house-fill"></i></span>
+              <%=profile.location%>
+            </li>
+            <li class="list-group-item"><span> <i class="bi bi-envelope-fill"></i></span>
+              <%=profile.email%>
+            </li>
+            <li class="list-group-item"><span><i class="bi bi-telephone-fill"></i></span>
+              <%=profile.phone%>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+      <div class="col-sm-10 text-left">
+
+        <div style="width: fit-content; margin-top: 10px;">
+
+          <div style="width: fit-content;">
+            <form action="/homepage" method="POST">
+              <h6>Select Leavetype</h6>
+              <select id="ddlleave" name="ddlleave" onchange="this.form.submit()">
+
+                <option value="1">Select Leave</option>
+                <option value="Casual Leave">Casual Leave</option>
+                <option value="Sick Leave">Sick Leave</option>
+                <option value="Earned Leave">Earned leave</option>
+                <option value="Loss Of Pay">Loss Of Pay</option>
+              </select>
+            </form>
+          </div>
+
+          <div class="tbls">
+            <table class="table table-borderless" style="width: 203px; text-align: left; height: 285px;">
+
+              <tr>
+
+                <th colspan="3">
+                  <h3 style="text-align: center;">
+                    <%=head%>
+                  </h3>
+                </th>
+              </tr>
+
+
+
+              <tr>
+                <td>Total Leaves</td>
+                <td>:</td>
+                <td>
+                  <%=total%>
+                </td>
+              </tr>
+
+
+              <tr>
+                <td>Availed Leaves</td>
+                <td>:</td>
+                <td>
+                  <%=availed%>
+                </td>
+              </tr>
+
+              <tr>
+                <td>Pending Leaves</td>
+                <td>:</td>
+                <td>
+                  <%=pending%>
+                </td>
+              </tr>
+
+
+              <tr>
+                <td>Balance Leaves</td>
+                <td>:</td>
+                <td>
+                  <%=balance%>
+                </td>
+              </tr>
+
+
+
+              <tr>
+
+                <td colspan="3"> <button type="button" class="btn btn-primarya" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal" data-bs-whatever="@mdo">Apply For Leave</button>
+
+
+                  <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-scrollable ">
+                      <div class="modal-content">
+
+
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Leave Application</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+
+                        <div class="modal-body">
+                          <form action="/requests" method="post" name="myForm" onSubmit="return(validate());">
+
+                            <div class="mb-3">
+                              <label for="recipient-name" class="col-form-label">Leave-Type:</label>
+                              <select id="ddlleave" name="ddlleave" class="form-select"
+                                aria-label="Default select example">
+                                <option value="">----Select----</option>
+
+                                <option value="Casual Leave">Casual Leave</option>
+                                <option value="Sick Leave">Sick Leave</option>
+                                <option value="Earned leave">Earned leave</option>
+                                <option value="Loss Of Pay">Loss Of Pay</option>
+                              </select>
+                            </div>
+
+
+
+                            <div class="mb-3">
+                              <label for="recipient-name" class="col-form-label">From:</label>
+                              <input type="date" class="form-control" id="From" name="From">
+                            </div>
+
+
+                            <div class="mb-3">
+                              <label for="recipient-name" class="col-form-label">To:</label>
+                              <input type="date" class="form-control" id="To" name="To">
+                            </div>
+
+
+                            <div class="mb-3">
+                              <label for="message-text" class="col-form-label">Reason:</label>
+                              <textarea class="form-control" id="Reason" name="Reason"></textarea>
+                            </div>
+
+                            <div class="mb-3">
+                              <label for="formFile" class="col-form-label">File(optional)</label>
+                              <input class="form-control" type="file" id="File" name="File">
+                            </div>
+
+
+
+
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                          <button type="submit" class="btn btn-primarya">Submit</button>
+                        </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+
+                </td>
+              </tr>
+
+            </table>
+
+
+            <table class="table table-hover ">
+              <thead align="center">
+                <tr>
+                  <td style="background: #4ed3a469;" colspan="7" align="center">
+                    <h4>My Leave Histroy</h4>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="col">Apply Date</th>
+                  <th scope="col">Leave type</th>
+                  <th scope="col">From</th>
+                  <th scope="col">To</th>
+                  <th scope="col">Days</th>
+                  <th scope="col">Reason</th>
+                  <th scope="col">Status</th>
+                </tr>
+              </thead>
+              <tbody id="myTable" align="center">
+                <% if(data.length){ for(var i=0;i < data.length;i++) { %>
+
+                  <tr>
+                    <td>
+                      <%=data[i].applyDate%>
+                    </td>
+                    <td>
+                      <%=data[i].leaveType%>
+                    </td>
+                    <td>
+                      <%=data[i].fromDate%>
+                    </td>
+                    <td>
+                      <%=data[i].toDate%>
+                    </td>
+                    <td>
+                      <%=data[i].days%>
+                    </td>
+                    <td>
+                      <%=data[i].reason%>
+                    </td>
+                    <% if(data[i].status=='Pending' ) { %>
+
+
+                      <td><button type="button" id="but" class="btn btn-warning btn-sm">
+                          <%= data[i].status%>
+                        </button></td>
+
+                      <% } else if(data[i].status=='Approved' ){ %>
+
+                        <td><button type="button" id="but" class="btn btn-success btn-sm">
+                            <%= data[i].status%>
+                          </button></td>
+                        <% } else{ %>
+                          <td><button type="button" id="but" class="btn btn-danger btn-sm">
+                              <%= data[i].status%>
+                            </button></td>
+
+
+
+                          <% } %>
+
+                  </tr>
+                  <% } }else{ %>
+                    <tr>
+                      <td colspan="7">No requests</td>
+                    </tr>
+                    <% } %>
+
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+
+    var counts = "<%= counts.length %>";
+
+    if (counts == 0) document.getElementById("count").style.display = "none";
+
+  </script>
+
+
+  <%- include('../partials/footer.ejs') %>

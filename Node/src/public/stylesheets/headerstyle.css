@@ -1,0 +1,66 @@
+*{
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  list-style: none;
+  box-sizing: border-box;
+}
+body{
+  font-family: montserrat;
+}
+
+header{
+    position: fixed;
+    top: 0;
+    left: 0;
+ 
+    background: rgba(80, 121, 164, 0.91);
+    
+    width: 100%;
+}
+
+
+.fa_custom {
+
+  margin: 20px;
+  margin-left: 10px;
+  float: right;
+
+
+}
+
+
+
+
+.logo{
+  color: white;
+ width: 100px;
+ height: 60px;
+margin: 6px;
+}
+
+
+
+
+
+header ul{
+  float: right;
+  
+}
+header ul li{
+  display: inline-block;
+  line-height: 72px;
+  margin: 0 5px;
+}
+header ul li a{
+  color: white;
+  font-size: 17px;
+  padding: 7px 13px;
+  border-radius: 3px;
+  text-transform: uppercase;
+}
+a.active,a:hover{
+  background: rgba(7, 42, 80, 0.88);
+  transition: .5s;
+}
+

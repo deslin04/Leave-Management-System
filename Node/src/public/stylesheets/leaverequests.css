@@ -1,0 +1,33 @@
+      
+       
+   <!--         
+              
+          
+   .text,select{
+       height: 30px;
+width: 243px;
+}
+
+textarea{
+height: 86px;
+width: 243px;
+}
+.table{
+   
+width: auto;
+text-align: center;
+ margin-left: auto;
+margin-right: auto;
+
+font-size: larger;
+text-align: right;
+}
+h2{
+    width: max-content;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 24px;
+    margin-bottom: 44px;
+}
+
+   
